@@ -1,0 +1,14 @@
+{
+  "name": "sh_wlg",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "zyx",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^6.0.8"
+  }
+}

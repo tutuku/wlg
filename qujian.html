@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>取件</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="./css/qujian.css">
+</head>
+<body onselectstart="return false">
+    <div class="concent" id="content" v-cloak>
+        <div class="title">
+            <p style="padding-left: 44px;cursor:pointer;" @click="goShou">物联柜</p>
+            <p style="cursor:pointer;" @click="goGet">取件</p>
+            <p style="padding-right: 44px">取件图片</p>
+            <img src="./image/购物车.png" style="padding:0;cursor:pointer; margin-right: 60px;" id="shop" alt="">
+            <img id="back" style="cursor:pointer;" src="./image/back.png" alt="">
+            <div class="welcome">
+                
+                <img style="cursor:pointer;" @click="handleSave" src="./image/power.png" alt="">
+            </div>
+        </div>
+        <div id="center">
+            <ul>
+                <li class="shebei" v-for="item,index in list" @click="sendId(item)" style="cursor:pointer;">
+                    <img :src="item.goodsImg" alt="">
+                    <span >{{item.goodsName}}</span>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./layui/layui.all.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/base.js"></script>
+    <script src="./js/redirect.js"></script>
+    <script src="./js/qujian.js"></script>
+</body>
+</html>

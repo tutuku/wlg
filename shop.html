@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>取件车</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="./css/shop.css">
+</head>
+<body onselectstart="return false" oncopy="return false" onselectstart="return false">
+    <div class="concent" id="content" v-cloak>
+        <div class="title">
+            <p style="padding-left: 44px; cursor:pointer;" @click="goShou">物联柜</p>
+            <p>取件车</p>
+            <!-- <p style="padding-right: 44px">还件图片</p> -->
+            <img id="back" style="cursor:pointer;" src="./image/back.png" alt="">
+            <div class="welcome">
+                <img src="./image/new.png" alt="" @click="refresh" style="right: 130px;cursor:pointer;">
+                <!-- <img id="goShop" src="./image/购物车.png" style="right: 100px; cursor:pointer;" @click="goShop" alt=""> -->
+                <img style="cursor:pointer;" @click="handleSave" src="./image/power.png" alt="">
+            </div>
+        </div>
+        <div class="all-del">
+            <button id="selectAll" class="select" v-if="list2.length>itemchecked.length"
+                style="left: 50px;background: #409efe;color: #fff;border: none" @click="selectAll">
+                全选
+            </button>
+            <button class="select" v-else @click="unselectAll"
+                style="left: 50px;background: #409efe;color: #fff;border: none">
+                全不选
+            </button>
+            <input type="button" class="delete" @click="handleDeleteitems()" value="删除"
+                style="left: 150px;background: #409efe;color: #fff;border: none;padding: 0 18px;" />
+        </div>
+        <div class="list-mes">
+            <span v-for="item in list1">{{item}}</span>
+            <div class="center">
+                <div v-for="item,index in list2">
+                    <span>
+                        <input type="checkbox" v-model="item.checked">
+                        <img :src="item.limg" alt="">
+                    </span>
+                    <span>{{item.gname}}</span>
+                    <span>{{item.measurement}}</span>
+                    <span>{{item.gsize}}</span>
+                    <span v-if="item.isConsumables==2">
+                        <span
+                            :class="{normal:item.goodsStatus===1,booked:item.goodsStatus===2,borrowed:item.goodsStatus===3}"
+                            style="display: inline-block;width: auto;height: auto;">1</span>
+                    </span>
+                    <div v-else style="display: inline-block;width: 16%;text-align: center;">
+                        <button style="font-size: 36px;
+                              height: 46px;
+                              width: 40px;border: none;background-color:#eef9ff " @click="numcomit(item,index)"
+                            :disabled="disabled">-</button>
+                        <input id="keyword" style="font-size: 26px;
+                            height: 40px;
+                            width: 60px;text-align: center; " type="number" class="tag" v-model="item.bookamount"
+                            autocomplete="off">
+                        <button style="font-size: 36px;
+                            height: 46px;
+                            width: 40px; border: none;background-color:#eef9ff" @click="numplus(item,index)"
+                            :disabled="disabled">+</button>
+                    </div>
+                    <span>
+                        <button class="delete" @click="handleDelete(item,index)" style="cursor: pointer;">删除</button>
+                        <button class="delete" @click="handleSaveNums(item)" v-if="item.isConsumables!==2"
+                            style="cursor: pointer;">保存</button>
+                    </span>
+                </div>
+            </div>
+            <div id="botm">
+                <span style="color: #000;float: left;text-align: left;
+                text-indent: 35px;">共计 <em style="    color: rgb(0, 15, 58);
+                    font-size: 24px;">{{total}}</em> 件物品</span>
+                <a href="javascript:;" id="get-mate" @click="postwupin(total)">一键取件</a>
+            </div>
+        </div>
+        <div id="tong" style="display: none">
+            <table class="layui-hide" lay-filter="test1" id="test"></table>
+        </div>
+    </div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./layui/layui.all.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/base.js"></script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">取消</a>
+    </script>
+    <script src="./js/shop.js"></script>
+</body>
+
+</html>

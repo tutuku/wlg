@@ -1,0 +1,1 @@
+$(function(){$.ajax({url:baseurl+"/user/getLoginUser",type:"post",success:function(res){if(res.status==="-1"){window.location.href="./denglu.html"}},error:function(error){window.location.href="./denglu.html"}})});

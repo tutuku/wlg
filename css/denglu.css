@@ -1,0 +1,311 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.box {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../image/login.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+}
+.box p {
+    width: 116px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 38px;
+    text-align: center;
+    line-height: 40px;
+    margin: 57px auto 0 auto;
+}
+
+#center {
+    width: 596px;
+    height: 579px;
+    margin: 90px auto;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.img1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.img2 {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.img3 {
+    position: absolute;
+    top: 68px;
+    left: -44px;
+}
+
+.img4 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.img5 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.box #btn {
+    border: 2px #042c46 solid;
+    display: block;
+    width: 116px;
+    height: 42px;
+    color: #fff;
+    background: #080d17;
+    font-size: 16px;
+    line-height: 42px;
+    text-align: center;
+    position: absolute;
+    right: 50px;
+    bottom: 38px;
+}
+
+#over {
+    display: none;
+    width: 495px;
+    height: 480px;
+    border: 2px #0d2233 solid;
+    position: relative;
+    background: #0d131d;
+    position: absolute;
+    top: 221px;
+    left: 50%;
+    margin-left: -245px;
+    overflow: hidden;
+}
+
+#over p {
+    width: 152px;
+    height: 38px;
+    font-size: 36px;
+    line-height: 38px;
+    text-align: center;
+    margin: 50px auto 64px auto;
+}
+
+#over input {
+    display: inline-block;
+    border-radius: 8px;
+    width: 398px;
+    height: 52px;
+    font-size: 18px;
+    line-height: 52px;
+    text-align: left;
+    border: 2px #0988a8 solid;
+    background: #151f2d;
+    color: #fff;
+    margin: 0 46px 32px 46px;
+}
+
+#over input::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #fff;
+    font-size: 18px;
+    line-height: 52px;
+    text-align: left;
+}
+
+#over .check {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 1px #0397d1 solid;
+    background: #0d121b;
+    padding-top: 5px;
+    margin-right: 3px;
+}
+
+#over a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    height: 14px;
+    width: 68px;
+    text-align: center;
+    line-height: 14px;
+}
+
+#over #login {
+    width: 402px;
+    height: 56px;
+    background: #2ca6ff;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    line-height: 56px;
+    text-align: center;
+    border-radius: 8px;
+    margin-left: 46px;
+}
+
+#photo {
+    width: 596px;
+    height: 579px;
+    position: absolute;
+    top: 221px;
+    right: 50%;
+    margin-right: -300px;
+    display: none;
+
+}
+
+#photo button {
+    display: block;
+    float: left;
+    width: 100px;
+    height: auto;
+    padding: 0 10px;
+    margin-top: 20px;
+    margin-right: 25px;
+
+}
+
+.box #btn:hover {
+    background: #c00;
+}
+
+.box #casual:hover {
+    background: #c00;
+}
+
+.box #reg:hover {
+    background: #c00;
+}
+
+.box #face:hover {
+    background: #c00;
+}
+
+#casual {
+    border: 2px #042c46 solid;
+    display: block;
+    width: 116px;
+    height: 42px;
+    color: #fff;
+    background: #080d17;
+    font-size: 16px;
+    line-height: 42px;
+    text-align: center;
+    position: absolute;
+    left: 50px;
+    bottom: 38px;
+}
+
+#reg {
+    border: 2px #042c46 solid;
+    display: block;
+    width: 116px;
+    height: 42px;
+    color: #fff;
+    background: #080d17;
+    font-size: 16px;
+    line-height: 42px;
+    text-align: center;
+    position: absolute;
+    left: 226px;
+    bottom: 38px;
+}
+
+#face {
+    border: 2px #042c46 solid;
+    display: block;
+    width: 116px;
+    height: 42px;
+    color: #fff;
+    background: #080d17;
+    font-size: 16px;
+    line-height: 42px;
+    text-align: center;
+    position: absolute;
+    right: 226px;
+    bottom: 38px;
+}
+
+#register {
+    display: none;
+    width: 600px;
+    height: auto;
+    border: 2px #0d2233 solid;
+    position: relative;
+    background: #0d131d;
+    position: absolute;
+    top: 171px;
+    left: 50%;
+    margin-left: -300px;
+    overflow: hidden;
+}
+
+#register p {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+#register input {
+    display: inline-block;
+    border-radius: 8px;
+    width: 450px;
+    height: 52px;
+    font-size: 18px;
+    line-height: 52px;
+    text-align: left;
+    border: 2px #0988a8 solid;
+    background: #151f2d;
+    color: #fff;
+    margin: 0 75px 32px 75px;
+}
+
+#register input::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #fff;
+    font-size: 18px;
+    line-height: 52px;
+    text-align: left;
+}
+
+#register div {
+    width: auto;
+    height: 30px;
+    color: #fff;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    padding: 0 10px;
+    margin: 20px auto;
+    margin-bottom: 40px
+}
+
+#register div a {
+    color: #fff;
+    font-size: 20px;
+}
+
+#register button {
+    width: 402px;
+    height: 56px;
+    background: #2ca6ff;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    line-height: 56px;
+    text-align: center;
+    border-radius: 8px;
+    margin-left: 96px;
+    margin-bottom: 15px
+}

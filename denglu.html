@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>物联柜</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="./css/denglu.css">
+</head>
+<body onselectstart="return false" oncopy="return false">
+    <div class="box" id="box">
+        <p>物联柜</p>
+        <div id="center">
+            <img class="img1" src="./image/角1.png" alt="">
+            <img class="img2" src="./image/角2.png" alt="">
+            <img class="img3" src="./image/人脸.png" alt="">
+            <img class="img4" src="./image/角3.png" alt="">
+            <img class="img5" src="./image/角4.png" alt="">
+        </div>
+        <div id="register">
+            <img class="img1" src="./image/角1.png" alt="">
+            <img class="img2" src="./image/角2.png" alt="">
+            <img class="img4" src="./image/角3.png" alt="">
+            <img class="img5" src="./image/角4.png" alt="">
+            <p>用户注册</p>
+            <input autocapitalize="on" id="use" style="text-align: left;;text-indent: 20px" type="text"
+                placeholder="用户名" autocomplete="off">
+            <input autocapitalize="on" id="realname" style="text-align: left;text-indent: 20px" type="text"
+                placeholder="请输入真实姓名" autocomplete="off">
+            <input autocapitalize="on" id="word" style="text-align: left;text-indent: 20px" type="password"
+                placeholder="密码" autocomplete="off">
+            <div class="showimg">
+                请点击:<a id="paizhao" style="cursor: pointer;">拍照</a><span
+                    style="font-size:18px;color: #c00;margin-left: 20px;">☜ 必选</span>
+            </div>
+            <button type="submit" id="regs">注册</button>
+        </div>
+        <div id="over">
+            <img class="img1" src="./image/角1.png" alt="">
+            <img class="img2" src="./image/角2.png" alt="">
+            <img class="img4" src="./image/角3.png" alt="">
+            <img class="img5" src="./image/角4.png" alt="">
+            <p>用户登录</p>
+            <input id="user" :focus="focusShow" type="text" style="text-align: left;text-indent: 20px" placeholder="用户名"
+                autocomplete="off">
+            <input id="password" :focus="focusShow" style="text-align: left;text-indent: 20px" type="password"
+                placeholder="密码" autocomplete="off">
+            <button type="submit" id="login">登录</button>
+        </div>
+        <div id="photo">
+            <video id="video" width="600" height="480" style="display: none"></video>
+            <canvas id="canvas" width="600" height="480"></canvas>
+            <div style="text-align: center">
+                <button type="button" id="capture" class="layui-btn layui-btn-normal"
+                    style="margin-left: 50px">拍照</button>
+                <button type="button" id="remake" class="layui-btn layui-btn-normal">重拍</button>
+                <button type="button" id="send" class="layui-btn layui-btn-normal">确定</button>
+                <button type="button" id="zhuce" class="layui-btn layui-btn-normal">注册</button>
+            </div>
+        </div>
+        <button type="submit" id="btn">密码登录</button>
+        <button type="submit" id="casual">临时用户</button>
+        <button type="submit" id="reg">用户注册</button>
+        <button type="submit" id="face">人脸登录</button>
+        <img src="./image/scran.png" style="display: none" id="scranImg1" alt="">
+        <span style="position: absolute;bottom:20px;left:calc(50vw - 152px);color:#fff">© 河南索恒信息技术有限公司 All rights reserved.</span>
+    </div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./layui/layui.all.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/denglu1.js"></script>
+    <script src="./layui/layui.all.js"></script>
+    <script src="./js/denglu2.js"></script>
+</body>
+</html>

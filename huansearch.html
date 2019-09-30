@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link href="./css/boots.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/huansearch.css">
+    <title>还件搜索</title>
+</head>
+<body onselectstart="return false">
+    <div class="concent" id="concent" v-cloak>
+        <div class="title">
+            <p @click="goShou" style="cursor:pointer;">物联柜</p>
+            <p style="margin-left: -60px">还件</p>
+            <img src="./image/购物车.png" id="shop" style="cursor:pointer; margin-right: 60px;" alt="">
+            <img id="back" style="cursor:pointer;" src="./image/back.png" alt="">
+            <div>
+                <img id="img" style="cursor:pointer;" @click="handleSave" src="./image/power.png" alt="">
+            </div>
+        </div>
+        <form class="navbar-form navbar-left" role="search"
+            style="display:block;padding-left: calc(100vw - 50vw - 220px);position: relative;">
+            <div style="position: absolute;top:2px;left:calc(100vw - 50vw - 280px)">
+                <audio autoplay></audio>
+                <img :src="src" @mousedown="startRecording()" @mouseup="stopRecording()" alt="" id="changePic"
+                    style="width: 40px;height:40px;margin-right: 20px">
+            </div>
+            <div class="form-group">
+                <input id="keyword" type="text" v-model='value' class="form-control" placeholder="请输入物品名称" autocomplete="off">
+            </div>
+            <button type="button" class="btn btn-default wulianguibtn" @click="search()">搜索</button>
+            <div v-show="searchbox" style="border: 1px #409efe solid;border-top: none;width: 440px;background: #fff">
+                <span v-for="(item,index) in searchlist" @click="searchnew(item)"
+                    style="display: block; font-size: 16px;line-height: 22px; cursor: pointer; margin-left: 10px;margin-bottom: 3px">
+                    {{item}}
+                </span>
+            </div>
+        </form>
+        <ul id="ul">
+            <li v-for="(item,index) in list" @click="sendId(item)">
+                <img :src="item.goodsImg" onerror="this.data_src=this.src;this.src='./image/err.png'"
+                    onclick="this.src=this.data_src">
+                <span>{{item.goodsName}}</span></li>
+        </ul>
+    </div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/base.js"></script>
+    <script src="/layui/layui.all.js"></script>
+    <script src="./js/HZRecorder.js"></script>
+    <script src="./js/huansearch.js"></script>
+</body>
+</html>

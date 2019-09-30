@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>取件</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="./css/menulist.css">
+</head>
+<body onselectstart="return false">
+    <div class="concent" id="content" v-cloak>
+        <div class="title">
+            <p style="padding-left: 44px;cursor:pointer;" @click="goShou">物联柜</p>
+            <p style="padding-right: 44px">物品列表</p>
+            <img id="back" style="cursor:pointer;" src="./image/back.png" alt="">
+            <div class="welcome">
+                <img style="cursor:pointer;" @click="handleSave" src="./image/power.png" alt="">
+            </div>
+        </div>
+        <table class="layui-hide" id="test" lay-filter="demoEvent"></table>
+    </div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./layui/layui.all.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/base.js"></script>
+    <script src="./js/redirect.js"></script>
+    <script src="./js/menulist1.js"></script>
+    <script type="text/html" id="toolbarDemo">
+          <span>物品列表</span>
+      </script>
+    <script type="text/html" id="zizeng">
+        {{d.LAY_TABLE_INDEX+1}}
+    </script>
+    <script src="./js/menulist2.js"></script>
+</body>
+
+</html>
