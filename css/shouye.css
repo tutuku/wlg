@@ -62,9 +62,12 @@
     text-align: center;
     color: #fff;
     border-radius: 8px;
+    position: relative; /* 相对布局 */
 }
-
-.center a:hover {
+.center a:active{
+    top: 8px; 
+}
+.center a:focus{
     background: #409efe;
 }
 
@@ -198,7 +201,15 @@
     font-size: 22px;
     color: #e5e5e5;
 }
-
+.buchong span {
+    position: relative;
+}
+.buchong span:active {
+    top: 8px;
+}
+.buchong span:focus {
+    background: #37d69e;
+}
 [v-cloak] {
     display: none !important;
 }

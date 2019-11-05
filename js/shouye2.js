@@ -21,13 +21,14 @@ layui.use('table', function () {
         , page: false
         , method: 'post'
         , parseData: function (res) {
-            console.log(res, '2323132')
+            // console.log(res, '2323132')
             return {
                 "code": 0,
                 "data": res.data
             }
         }
         , cellMinWidth: 80
+        // 表格渲染
         , cols: [[
             { field: 'id', width: 80, title: 'ID', sort: true }
             , { field: 'goodsName', width: 130, title: '物品名称' }
@@ -46,7 +47,7 @@ layui.use('table', function () {
         ]],
     });
 });
-
+// 监测用户是否填写信息
 function checkPhone() {
     var realname = document.getElementById('realname').value;
     if (!realname) {
@@ -71,14 +72,15 @@ function checkPhone() {
             id: userId
         },
         success: function (suc) {
-            console.log('2555', suc)
+            // console.log('2555', suc)
             if (suc.success == true) {
                 that.showbox = false;
                 $.ajax({
                     type: 'post',
                     url: baseurl + '/user/getLoginUser',
                     success: function (suc) {
-                        console.log('00', suc.data)
+                        // 判断重新赋值
+                        // console.log('00', suc.data)
                         that.imgsrc = suc.data.faceimg
                         if (suc.data.status === 1) {
                             suc.data.status = "未激活";
@@ -101,8 +103,10 @@ function checkPhone() {
         }
     })
 }
+// 用户修改密码表格
 layui.form.on('submit(demo1)', function (data) {
-    console.log(data)
+    // console.log(data)
+    // 判断是否填写信息
     var oZhezhao = document.getElementById('zhezhao');
     if (!data.field.oldPassword || !data.field.newPassword) {
         return false;

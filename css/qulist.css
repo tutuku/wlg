@@ -61,7 +61,7 @@
 }
 
 #alert div {
-    width: 1000px;
+    width: 1164px;
     height: auto;
     margin: 0 auto;
     margin-left: auto;
@@ -79,6 +79,7 @@
     width: auto;
     /* border-bottom: 1px solid #000; */
     /* text-align: center */
+    /* height: auto; */
 }
 
 #alert ul li {
@@ -91,9 +92,20 @@
     display: inline-block;
     line-height: 60px;
     text-align: center;
-
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#alert ul li img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
 }
 
+#alert ul div {
+    display: inline-block;
+    text-align: center;
+}
 #alert ul input {
     display: inline-block;
     width: 48px;
@@ -193,6 +205,12 @@ input::-webkit-inner-spin-button {
     color: red;
 }
 
+.nones {
+    color: red;
+}
+.none {
+    color: red;
+}
 [v-cloak] {
     display: none !important;
 }

@@ -1,8 +1,8 @@
 var did=localStorage.getItem('did')
-console.log(did)
+// console.log(did)
  layui.use('table', function () {
     var table = layui.table;
-    console.log(baseurl + '/newGoods/findGoodsBySarkId')
+    // console.log(baseurl + '/newGoods/findGoodsBySarkId')
     var w=$(parent.window).width()
     table.render({
         elem: '#test'
@@ -18,7 +18,7 @@ console.log(did)
             , last: false //不显示尾页
         }
         , parseData: function (res) {
-            console.log(res, '00000')
+            // console.log(res, '00000')
             return {
                 "code": 0,
                 "data": res.data.rows
@@ -87,7 +87,7 @@ console.log(did)
     table.on('tool(demoEvent)', function (obj) {
         var data = obj.data;
         if (obj.event === 'setSign') {
-            console.log(data)
+            // console.log(data)
             layer.open({
                 type: 1,
                 title: false,

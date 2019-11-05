@@ -17,6 +17,7 @@ const shouye = new Vue({
         }
     },
     created() {
+        // 页面挂载请求物品一级类别
         var that = this
         var text = "请选择物品分类"
         that.speckText(text)
@@ -28,7 +29,7 @@ const shouye = new Vue({
                 parentid: 0
             },
             success: function (success) {
-                console.log(success.data)
+                // console.log(success.data)
                 that.list = success.data
                 for (var i = 0; i < success.data.length; i++) {
                     that.list.goodsImg = success.data[i].goodsImg
@@ -40,14 +41,16 @@ const shouye = new Vue({
                 }
             },
             error: function (err) {
-                console.log(err)
+                // console.log(err)
             }
         })
     },
     methods: {
+        // 购物车页面跳转
         goShou() {
             window.location.href = './shouye.html'
         },
+        // 退出登录
         handleSave() {
             $.ajax({
                 type: "post",
@@ -63,12 +66,13 @@ const shouye = new Vue({
                     }
                 },
                 error: function (data) {
-                    console.log(data)
+                    // console.log(data)
                 },
             });
         },
+        // 点击进入二级菜单
         sendId: function (item) {
-            console.log(item)
+            // console.log(item)
             localStorage.setItem('a', JSON.stringify(item.id))
             localStorage.setItem('name', JSON.stringify(item.goodsName))
             window.location.href = './qujian.html'
@@ -83,12 +87,15 @@ const shouye = new Vue({
             n.src = url;
             n.play();
         },
+        // 搜索按钮
         search: function () {
             var that = this
+            // 判断是否输入搜索内容
             if (that.value == '') {
                 var text = "请输入物品名称";
                 that.speckText(text)
             } else {
+                // 搜索请求
                 $.ajax({
                     url: baseurl + '/newGoods/goodsList',
                     type: 'post',
@@ -96,7 +103,7 @@ const shouye = new Vue({
                         goodsName: that.value
                     },
                     success: function (res) {
-                        console.log(res, "--------")
+                        // console.log(res, "--------")
                         if (res.data.length > 0) {
                             localStorage.setItem('b', JSON.stringify(res.data))
                             localStorage.setItem('bname',res.data[0].goodsName)
@@ -107,12 +114,13 @@ const shouye = new Vue({
                         }
                     },
                     error: function (err) {
-                        console.log(err)
+                        // console.log(err)
                     }
                 })
             }
 
         },
+        // 物品缩写搜索
         searchnew(item) {
             $.ajax({
                 url: baseurl + '/newGoods/goodsList',
@@ -128,10 +136,11 @@ const shouye = new Vue({
                     }
                 },
                 error: function (err) {
-                    console.log(err)
+                    // console.log(err)
                 }
             })
         },
+        // 语音搜索
         startRecording() {
             HZRecorder.get(function (rec) {
                 recorder = rec;
@@ -148,7 +157,7 @@ const shouye = new Vue({
             var that = this
             recorder.stop();
             var blob = recorder.getBlob();
-            console.log(blob);
+            // console.log(blob);
             var url = URL.createObjectURL(blob);
             var div = document.createElement('div');
             var au = document.createElement('audio');
@@ -160,7 +169,8 @@ const shouye = new Vue({
             hf.innerHTML = hf.download;
             let formdata = new FormData();
             formdata.append("file", blob);
-            console.log(blob)
+            // console.log(blob)
+            // 语音搜索请求
             $.ajax({
                 url: baseurl + '/newGoods/findGoodsByVoice',
                 type: 'post',
@@ -170,10 +180,11 @@ const shouye = new Vue({
                 async: true,
                 data: formdata,
                 success: function (res) {
-                    console.log(res)
+                    // console.log(res)
                     if (res.status == '1') {
                         localStorage.setItem('b', JSON.stringify(res.data))
                         window.location.href = './qulist.html'
+                        // that.value = res.msg
                     } else {
                         var text = res.msg
                         that.speckText(text)
@@ -183,7 +194,7 @@ const shouye = new Vue({
         },
         playRecording() {
             if (!recorder) {
-                console.log('未录音')
+                // console.log('未录音')
             } else {
                 recorder.play(audio);
             }
@@ -191,6 +202,7 @@ const shouye = new Vue({
         }
     },
     watch: {
+        // 监听输入框信息
         value() {
             var that = this
             if (that.value == '') {
@@ -215,16 +227,18 @@ const shouye = new Vue({
                         }
                     },
                     error: function (err) {
-                        console.log(err)
+                        // console.log(err)
                     }
                 })
             }
         }
     }
 })
+// 后退按钮
 $('#back').on('click', () => {
     window.location.href = "./shouye.html"
 })
+// 取件车按钮
 $('#shop').click(function () {
     window.location.href = "./shop.html"
 })

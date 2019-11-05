@@ -65,20 +65,51 @@
 .layui-table-view .layui-table td, .layui-table-view .layui-table th {
     padding: 0 !important;
 }
-.concent #guizi {
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: #eef9ff;
+    -webkit-border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    background-color: #eef9ff;
+    -webkit-border-radius: 4px;
+    height: 141px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    width: 300px;
+    height: 40px;
+    background-color: #eef9ff;
+    -webkit-border-radius: 4px;
+}
+.concent .center {
+    width: calc(100vw - 100px);
+    margin: 0 auto;
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+.concent .center .guizi {
     width: 150px;
     height: 200px;
     border-radius: 5px;
     cursor: pointer;
     display: inline-block;
     margin: 20px;
-
+    position: relative;
 }
-.concent #guizi img{
+.concent .center .guizi:active {
+    top: 6px;
+}
+.concent .center .guizi img{
     width: 100%;
     height: 100px;
 }
-.concent #guizi span{
+.concent .center .guizi span{
     display: block;
     width: 100%;
     height: 50px;

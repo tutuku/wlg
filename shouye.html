@@ -11,6 +11,7 @@
 </head>
 <body onselectstart="return false">
     <div class="concent" id="concent" v-cloak>
+        <!-- 头部导航 -->
         <ul class="layui-nav layui-bg-blue">
             <li class="layui-nav-item">
                 <a href="javascript:;" id="wlg" style="font-size: 24px; cursor:pointer;">物联柜</a>
@@ -35,6 +36,7 @@
             </li>
 
         </ul>
+        <!-- 内容部分 -->
         <div class="center">
             <a id="take" href="javascript:;" style="margin-right: 96px;margin-bottom: 100px;">取件</a>
             <a id="also" href="javascript:;" style="margin-bottom: 100px;">还件
@@ -50,7 +52,7 @@
         <div id="returnmsg" style="display: none" v-show="showreturn">
             <table class="layui-hide" id="test"></table>
         </div>
-
+        <!-- 用户基本信息 -->
         <div class="zhezhao" id="zhezhao" v-show="showbox">
             <div class="table">
                 <i class="layui-icon layui-icon-close" @click="handleCloseModal"></i>
@@ -115,6 +117,7 @@
                 </form>
             </div>
         </div>
+        <!-- 用户修改密码 -->
         <div class="zhezhao" id="zhezhao1" v-show="showChang">
             <div class="chang-password">
                 <i class="layui-icon layui-icon-close" @click="handleCloseModal1"></i>
@@ -143,7 +146,16 @@
                 </form>
             </div>
         </div>
-        <div style="position: absolute;left:10px;top:90px;font-size: 20px;line-height: 50px;height: 50px;background: #409EFF;cursor: pointer; color: #fff;border-radius: 5px;padding: 0 10px" @click="supplement"><span>消耗品补充</span></div>
+        <!-- 消耗品补充 -->
+        <div class="buchong" style="position: absolute;
+        left:10px;top:90px;
+        font-size: 20px;
+        line-height: 50px;
+        height: 50px;background: #409EFF;
+        cursor: pointer;
+         color: #fff;
+         border-radius: 5px;
+         padding: 0 10px" @click="supplement"><span>消耗品补充</span></div>
     </div>
     <script src="./js/jquery.js"></script>
     <script src="./js/bootstrap.js"></script>

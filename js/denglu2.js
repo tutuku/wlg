@@ -1,3 +1,4 @@
+// layUI表格检测图片上传是否成功
 layui.use('upload', function () {
     var $ = layui.jquery,
         upload = layui.upload;

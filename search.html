@@ -12,15 +12,17 @@
 </head>
 <body onselectstart="return false">
     <div class="concent" id="concent" v-cloak>
+        <!-- 头部导航 -->
         <div class="title">
             <p @click="goShou" style="cursor:pointer;">物联柜</p>
             <p style="margin-left: -60px">取件</p>
             <img src="./image/购物车.png" id="shop" style="cursor:pointer;margin-right: 70px" alt="">
             <img id="back" style="cursor:pointer;" src="./image/back.png" alt="">
             <div>
-                <img id="img" style="cursor:pointer;" @click="handleSave" src="./image/power.png" alt="">
+                <img id="img" style="cursor:pointer;" @click="handleSave" src="./image/exit.png" alt="">
             </div>
         </div>
+        <!-- 搜索框 -->
         <form class="navbar-form navbar-left" role="search"
             style="display:block;padding-left: calc(100vw - 50vw - 220px); position: relative;">
             <div style="position: absolute;top:2px;left:calc(100vw - 50vw - 280px)">
@@ -41,10 +43,11 @@
                 </span>
             </div>
         </form>
+        <!-- 一级菜单部分 -->
         <ul id="ul">
             <li v-for="(item,index) in list" @click="sendId(item)">
-                <img :src="item.goodsImg" alt="" onerror="this.data_src=this.src;this.src='./image/err.png'"
-                    onclick="this.src=this.data_src">
+                <img :src="item.goodsImg" alt="" onerror="this.src='./image/err.png'">
+                <!-- onclick="this.src=this.data_src" :data_src='item.goodsImg' -->
                 <span>{{item.goodsName}}</span>
             </li>
         </ul>

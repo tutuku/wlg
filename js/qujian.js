@@ -10,12 +10,13 @@ window.oncontextmenu = function(){
                 }
             },
             created() {
+                // 页面挂载请求二级菜单
                 var newId=localStorage.getItem('a')
                 var goodsName = localStorage.getItem('name')
                 this.text = goodsName + '物品'
                 this.speckText(this.text)
                 var that=this
-                // console.log(newId)
+                // // console.log(newId)
                 $.ajax({
                     url:baseurl+'/newGoods/newMenu',
                     type:'post',
@@ -23,27 +24,31 @@ window.oncontextmenu = function(){
                         parentid:newId
                     },
                     success:function(res){
-                       console.log(res)
+                       // console.log(res)
                         that.list=res.data
                     },
                     error:function(err){
-                        console.log(err)
+                        // console.log(err)
                     }
                 })
             },
             methods: {
+                // 语音播报
                 speckText(str) {
                     var url = "http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=" + encodeURI(str);        // baidu
                     var n = new Audio(url);
                     n.src = url;
                     n.play();
                 },
+                // 回退按钮
                 goGet:function(){
                     window.location.href='./search.html'
                 },
+                // 取件车按钮
                 goShou(){
                     window.location.href ='./shouye.html'
                 },
+                // 退出登录
                 handleSave() {
                     $.ajax({
                         type: "post",
@@ -59,15 +64,16 @@ window.oncontextmenu = function(){
                             }
                         },
                         error: function (data) {
-                            console.log(data)
+                            // console.log(data)
                         },
                     });
                 },
+                // 点击进入三级菜单
                 sendId:function(item){
-                    console.log(item)
+                    // console.log(item)
                     localStorage.setItem('b',JSON.stringify(item.id))
                     localStorage.setItem('bname',JSON.stringify(item.goodsName))
-                    console.log('b',item.id)
+                    // console.log('b',item.id)
                         window.location.href='./qulist.html'
                 }
             },

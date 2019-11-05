@@ -11,14 +11,16 @@
 </head>
 <body onselectstart="return false">
     <div class="concent" id="content" v-cloak>
+        <!-- 头部导航 -->
         <div class="title">
             <p style="padding-left: 44px;cursor:pointer;" @click="goShou">物联柜</p>
             <p style="padding-right: 44px">柜门内物品列表</p>
             <img id="back" style="cursor:pointer;" src="./image/back.png" alt="">
             <div class="welcome">
-                <img style="cursor:pointer;" @click="handleSave" src="./image/power.png" alt="">
+                <img style="cursor:pointer;" @click="handleSave" src="./image/exit.png" alt="">
             </div>
         </div>
+        <!-- 箱子内物品列表 -->
         <table class="layui-hide" id="test" lay-filter="demoEvent"></table>
     </div>
     <script src="./js/jquery.js"></script>

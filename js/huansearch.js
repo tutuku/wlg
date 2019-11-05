@@ -39,7 +39,7 @@ const shouye = new Vue({
                 }               
             },
             error: function (err) {
-                console.log(err)
+                // console.log(err)
             }
         })
     },
@@ -62,12 +62,12 @@ const shouye = new Vue({
                     }
                 },
                 error: function (data) {
-                    console.log(data)
+                    // console.log(data)
                 },
             });
         },
         sendId: function (item) {
-            console.log(item)
+            // console.log(item)
             localStorage.setItem('b', item.id)
             localStorage.setItem('gname',item.goodsName)
             window.location.href = './huanjian.html'
@@ -95,7 +95,7 @@ const shouye = new Vue({
                         goodsName: that.value
                     },
                     success: function (success) {
-                        // console.log(success, "--------")
+                        // // console.log(success, "--------")
                         if (success.data.length > 0) {
                             localStorage.setItem('id', JSON.stringify(success.data[0].parentid))
                             localStorage.setItem('igname',success.data[0].goodsName)
@@ -106,14 +106,14 @@ const shouye = new Vue({
                         }
                     },
                     error: function (err) {
-                        console.log(err)
+                        // console.log(err)
                     }
                 })
             }
 
         },
         searchnew(item) {
-            console.log(item)
+            // console.log(item)
             $.ajax({
                 url: baseurl + '/newGoods/goodsList',
                 type: 'post',
@@ -121,16 +121,16 @@ const shouye = new Vue({
                     goodsName: item
                 },
                 success: function (res) {
-                    console.log(res.data, "sernew")
+                    // console.log(res.data, "sernew")
                     if (res.data.length > 0) {
                         localStorage.setItem('id', JSON.stringify(res.data[0].parentid))
                         localStorage.setItem('igname',res.data[0].goodsName)
-                        console.log(res.data[0].parentid)
+                        // console.log(res.data[0].parentid)
                         window.location.href = './huanlist.html'
                     }
                 },
                 error: function (err) {
-                    console.log(err)
+                    // console.log(err)
                 }
             })
         },
@@ -150,7 +150,7 @@ const shouye = new Vue({
             var that = this
             recorder.stop();
             var blob = recorder.getBlob();
-            console.log(blob);
+            // console.log(blob);
             var url = URL.createObjectURL(blob);
             var div = document.createElement('div');
             var au = document.createElement('audio');
@@ -162,7 +162,7 @@ const shouye = new Vue({
             hf.innerHTML = hf.download;
             let formdata = new FormData();
             formdata.append("file", blob);
-            console.log(blob)
+            // console.log(blob)
             $.ajax({
                 url: baseurl + '/newGoods/findGoodsByVoice',
                 type: 'post',
@@ -172,7 +172,7 @@ const shouye = new Vue({
                 async: true,
                 data: formdata,
                 success: function (res) {
-                    console.log(res.obj[0].parentid)
+                    // console.log(res.obj[0].parentid)
                     if (res.code === 1) {
                         localStorage.setItem('id', JSON.stringify(res.obj[0].parentid))
                         window.location.href = './huanlist.html'
@@ -196,10 +196,10 @@ const shouye = new Vue({
         value() {
             var that = this
             if (that.value == '') {
-                // console.log(that.value)
+                // // console.log(that.value)
                 that.searchbox = false
             } else {
-                // console.log(that.value)
+                // // console.log(that.value)
                 that.searchlist = []
                 $.ajax({
                     url: baseurl + '/newGoods/goodsList',
@@ -208,20 +208,20 @@ const shouye = new Vue({
                         goodsName: that.value
                     },
                     success: function (res) {
-                        // console.log(res, "564")
+                        // // console.log(res, "564")
                         if (res.data.length > 0) {
                             for (var i = 0; i < res.data.length; i++) {
                                 that.searchlist.push(res.data[i].goodsName)
-                                // console.log(res.data[i].goodsName)
+                                // // console.log(res.data[i].goodsName)
                                 that.searchbox = true
                             }
-                            // console.log(that.searchlist)
+                            // // console.log(that.searchlist)
                         } else {
                             that.searchbox = false
                         }
                     },
                     error: function (err) {
-                        console.log(err)
+                        // console.log(err)
                     }
                 })
             }

@@ -6,21 +6,26 @@ const qujian = new Vue({
     data() {
         return {
             list:[],
-            text:''
+            text:'',
+            num:''
         }
     },
     created(){
+        // 页面挂载请求箱子列表
         var that = this
+        that.num = localStorage.getItem('num')
         $.ajax({
-            url:baseurl+'/sark/sarkList',
+            url:baseurl+'/sark/findByNum',
             type:'post',
-            data:{},
+            data:{
+                num:that.num
+            },
             success:function(res){
-                console.log(res)
+                console.log(res,'res')
                 that.list=res.data
             }
         })
-        that.text = '柜门列表'
+        that.text = that.num+'号柜门列表'
         that.speckText(this.text) 
     },
     methods: {
@@ -33,6 +38,7 @@ const qujian = new Vue({
         goShou() {
             window.location.href = './shouye.html'
         },
+        // 退出登录
         handleSave() {
             $.ajax({
                 type: "post",
@@ -48,16 +54,17 @@ const qujian = new Vue({
                     }
                 },
                 error: function (data) {
-                    console.log(data)
+                    // console.log(data)
                 },
             });
         },
+        // 点击跳转
         door(item) {
-            localStorage.setItem('did',item.id)
+            localStorage.setItem('did',item.sarkNum)
             window.location.href="./doorlist.html"
         }
     },
 })
 $('#back').on('click', () => {
-    window.location.href = "./shouye.html"
+    window.location.href = "./door.html"
 })

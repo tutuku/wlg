@@ -95,8 +95,14 @@
     margin-bottom: 50px;
     margin-right: 52px;
     border-radius: 5px;
+    position: relative;
 }
-
+#ul li:active {
+    top: 4px;
+}
+#ul li:focus {
+    background: #409efe;
+}
 #ul li span {
     display: inline-block;
     width: 228px;
@@ -114,9 +120,6 @@
     object-fit: cover;
 }
 
-#ul li:hover {
-    background: #409efe;
-}
 #ul li:hover span {
     background: #409efe;
 }

@@ -6,7 +6,7 @@ if (navigator.mediaDevices.getUserMedia) {
   const constraints = { audio: true };
   navigator.mediaDevices.getUserMedia(constraints).then(
     stream => {
-      console.log("授权成功！");
+      // console.log("授权成功！");
 
       const mediaRecorder = new MediaRecorder(stream);
 
@@ -14,13 +14,13 @@ if (navigator.mediaDevices.getUserMedia) {
         if (mediaRecorder.state === "recording") {
           mediaRecorder.stop();
           recordBtn.textContent = "record";
-          console.log("录音结束");
+          // console.log("录音结束");
         } else {
           mediaRecorder.start();
-          console.log("录音中...");
+          // console.log("录音中...");
           recordBtn.textContent = "发送";
         }
-        console.log("录音器状态：", mediaRecorder.state);
+        // console.log("录音器状态：", mediaRecorder.state);
       };
 
       mediaRecorder.ondataavailable = e => {
@@ -32,7 +32,7 @@ if (navigator.mediaDevices.getUserMedia) {
         chunks = [];
         var audioURL = window.URL.createObjectURL(blob);
         player.src = audioURL;
-        console.log(blob)
+        // console.log(blob)
       };
     },
     () => {

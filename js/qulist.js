@@ -8,7 +8,7 @@ const qujian = new Vue({
         return {
             bookAmount: 0,
             arr: [],
-            list1: ["名称", "尺寸","型号", "数量", "状态"],
+            list1: ["图片","名称", "尺寸","型号", "数量", "状态"],
             list2: [],
             showbox: false,
             disabled: false,
@@ -17,18 +17,20 @@ const qujian = new Vue({
             color: '#37d69e',
             fontcolor: '#fff',
             border: 'none',
-            statuslist: ["正常", "被预约", "被借走", "无物品"],
+            statuslist: ["正常", "预约", "借出", "无物品"],
             nun: '(空)',
             zor: '0',
             classenable: false,
-            text:''
+            text:'',
+            isDisable:false
         }
     },
     computed: {
         newdata() {
+            // 页面挂载前请求数据并重新赋值
             const _this = this;
             return this.list2.map(ele => {
-                console.log('000', ele)
+                // console.log('000', ele)
                 if (ele.goodsName == "") {
                     ele.goodsName = _this.nun
                 } else {
@@ -50,20 +52,28 @@ const qujian = new Vue({
                     ele.measurement == ele.measurement
                 }
                 if (ele.gamount==null){
-                    console.log(ele.gamount)
+                    // console.log(ele.gamount)
                     ele.gamount= 1
                 }
+                // // console.log(this.statuslist,ele.goodsStatus,'44444444444')
                 if (ele.usageNum == "0"&& ele.isConsumables=='1') {
-                    console.log(_this.statuslist[3])
+                    // console.log(_this.statuslist[3])
                     ele.goodsStatus1 = _this.statuslist[3]
-                } else {
-                    ele.goodsStatus1 = _this.statuslist[ele.goodsStatus - 1];
+                }else if(ele.usageNum > "0"&& ele.goodsStatus=='1'){
+                    ele.goodsStatus1 = _this.statuslist[0]
+                } else if(ele.usageNum == "0"&& ele.goodsStatus=='2'){
+                    ele.goodsStatus1 = _this.statuslist[1];
+                }else if(ele.usageNum == "0" && ele.goodsStatus=='3') {
+                    ele.goodsStatus1 = _this.statuslist[2];
+                }else{
+                    ele.goodsStatus1 = _this.statuslist[ele.goodsStatus -1];
                 }
                 return ele;
             });
         }
     },
     created() {
+        // 页面挂载请求三级菜单列表
         var newId = JSON.parse(localStorage.getItem('b'));
         var goodsName = localStorage.getItem('bname')
         this.text = goodsName + '列表'
@@ -84,30 +94,36 @@ const qujian = new Vue({
                     that.list2 = success.data
                     for (var i = 0; i < data.length; i++) {
                         if (that.list2[i].isConsumables == 1) {
-                            console.log(that.list2.status)
+                            // console.log(that.list2.status)
                             if (that.list2[i].status > 1) {
-                                console.log(that.list2[i].goodsStatus1, '2222')
+                                // console.log(that.list2[i].goodsStatus1, '2222')
                                 that.list2[i].goodsStatus1 == '正常'
-                                console.log(that.list2[i].goodsStatus1, '3333')
+                                // console.log(that.list2[i].goodsStatus1, '3333')
                             }
                         }
                     }
                 },
                 error: function (err) {
-                    console.log(err)
+                    // console.log(err)
                 }
             })
         }
     },
     methods: {
+        // 当物品信息过长采取的处理
+        gName(item){
+            layer.tips("<span style='font-size:20px;line-height:25px'>"+item.goodsName+"</span>", '.Gname',{time: 3000,area:['auto','auto']});
+        },
+        // 语音播报
         speckText(str) {
             var url = "http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=" + encodeURI(str);        // baidu
             var n = new Audio(url);
             n.src = url;
             n.play();
         },
+        // 物品状态改变字体颜色改变
         shopcarshtyle(item) {
-            // console.log(item, '44445545')
+            // // console.log(item, '44445545')
             let disabledshop, color, fontcolor, border;
             if (item.goodsStatus == 1) {
                 disabledshop = 'auto';
@@ -139,17 +155,21 @@ const qujian = new Vue({
                 padding: '5px'
             };
         },
+        // 当前鼠标位置
         changeActive(index) {
             this.classenable = true
             this.current = index;
         },
+        // 鼠标不活跃
         removeActive(index) {
             this.classenable = false
             this.current = index;
         },
+        // 取件车按钮
         goShou() {
             window.location.href = './shouye.html'
         },
+        // 退出登录
         handleSave() {
             $.ajax({
                 type: "post",
@@ -165,10 +185,11 @@ const qujian = new Vue({
                     }
                 },
                 error: function (data) {
-                    console.log(data)
+                    // console.log(data)
                 },
             });
         },
+        // 加入取件车
         send(item, index) {
             this.arr.name = this.list2[index].name;
             this.arr.manufacturer = this.list2[index].manufacturer;
@@ -178,6 +199,7 @@ const qujian = new Vue({
             this.arr = [];
             this.arr.push(item);
         },
+        // 回退按钮
         goGet: function () {
             window.location.href = './search.html'
         },
@@ -189,9 +211,9 @@ const qujian = new Vue({
         },
 
         handleClick(item, index) {
-            console.log('55', item)
+            // console.log('55', item)
             item.gamount++;
-            console.log(item.gamount)
+            // console.log(item.gamount)
         },
         handleClick1(item, index) {
             if (item.gamount > 0) {
@@ -208,9 +230,14 @@ const qujian = new Vue({
             n.src = url;
             n.play();
         },
+        // 加入取件车按钮
         addShop(item, index) {
-            console.log(item.gamount)
+            // console.log(item.gamount)
             var that = this;
+            that.isDisable=true;
+            setTimeout(() => {
+                that.isDisable = false
+               }, 500)
             if (item.usageNum <= 0) {
                 layer.msg("没有物品可以取用了");
                 var text = "取件数量大于库存数量"
@@ -222,7 +249,7 @@ const qujian = new Vue({
                 var text = "请输入正确的数量"
                 that.speckText(text)
             } else {
-                console.log(item.gamount)
+                // console.log(item.gamount)
                 $.ajax({
                     url: baseurl + '/cart/addCart',
                     data: {
@@ -238,8 +265,10 @@ const qujian = new Vue({
                             item.goodsStatus = item.goodsStatus + 1;
                             if (item.gamount == undefined) {
                                 item.usageNum = item.usageNum - 1
+                                // item.goodsStatus = item.goodsStatus + 1
                             } else {
                                 item.usageNum = item.usageNum - item.gamount
+                                // item.goodsStatus = item.goodsStatus + 1
                             }
                         } else {
                             layer.msg(suc.data)

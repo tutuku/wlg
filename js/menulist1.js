@@ -17,9 +17,11 @@ const qujian = new Vue({
             n.src = url;
             n.play();
         },
+        // 首页按钮
         goShou() {
             window.location.href = './shouye.html'
         },
+        // 退出登录
         handleSave() {
             $.ajax({
                 type: "post",
@@ -35,12 +37,13 @@ const qujian = new Vue({
                     }
                 },
                 error: function (data) {
-                    console.log(data)
+                    // console.log(data)
                 },
             });
         }
     },
 })
+// 回退按钮
 $('#back').on('click', () => {
     window.location.href = "./shouye.html"
 })

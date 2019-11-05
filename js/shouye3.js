@@ -16,7 +16,7 @@ function stopRecording() {
     imgsrc.src = "./image/voice.png"
     recorder.stop();
     var blob = recorder.getBlob();
-    console.log(blob);
+    // console.log(blob);
     var url = URL.createObjectURL(blob);
     var div = document.createElement('div');
     var au = document.createElement('audio');
@@ -28,7 +28,7 @@ function stopRecording() {
     hf.innerHTML = hf.download;
     let formdata = new FormData();
     formdata.append("file", blob);
-    console.log(blob)
+    // console.log(blob)
     $.ajax({
         url: baseurl + '/newGoods/findGoodsByVoice',
         type: 'post',
@@ -38,7 +38,7 @@ function stopRecording() {
         async: true,
         data: formdata,
         success: function (res) {
-            console.log(res)
+            // console.log(res)
         }
     })
 }

@@ -17,7 +17,7 @@
             <p style="cursor:pointer;" @click="goBack">消耗品补充列表</p>
             <img id="back" @click="back" style="cursor:pointer;" src="./image/back.png" alt="">
             <div class="welcome">
-                <img style="cursor:pointer;" @click="handleSave" src="./image/power.png" alt="">
+                <img style="cursor:pointer;" @click="handleSave" src="./image/exit.png" alt="">
             </div>
         </div>
         <div id="alert">
@@ -27,12 +27,12 @@
                     <li v-for="item in list1" style="margin-right: 4px;">{{item}}</li>
                 </ul>
                 <ul v-for="(item,index) in list2" ref="detail">
-                    <li>{{item.goodsName}}</li>
+                    <li @mouseover="gName(item)" class="Gname">{{item.goodsName}}</li>
                     <li>{{item.goodsFactory}}</li>
                     <li>{{item.goodsSize}}</li>
                     <li>{{item.measurement}}</li>
                     <li>{{item.usageNum}}</li>
-                    <a href="javascript:;" @click="addShop(item,index)">补充</a>
+                    <li style="border: none;width: 58px;"><a href="javascript:;" @click="addShop(item,index)">补充</a></li>
                 </ul>
             </div>
         </div>

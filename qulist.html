@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -9,8 +10,10 @@
     <link rel="stylesheet" href="./layui/css/layui.css">
     <link rel="stylesheet" href="./css/qulist.css">
 </head>
+
 <body oncopy="return false" onselectstart="return false">
     <div class="concent" id="content" v-cloak>
+        <!-- 头部导航 -->
         <div class="title">
             <p style="padding-left: 44px;cursor:pointer;" @click="goShou">物联柜</p>
             <p style="cursor:pointer;" @click="goGet">取件</p>
@@ -19,9 +22,10 @@
             <img id="back" style="cursor:pointer;" src="./image/back.png" alt="">
             <div class="welcome">
 
-                <img style="cursor:pointer;" @click="handleSave" src="./image/power.png" alt="">
+                <img style="cursor:pointer;" @click="handleSave" src="./image/exit.png" alt="">
             </div>
         </div>
+        <!-- 三级菜单列表 -->
         <div id="alert">
             <p>物品列表</p>
             <div id="blo">
@@ -31,7 +35,8 @@
                 <ul v-for="(item,index) in newdata" @click="send(item,index)" ref="detail"
                     @mouseover="changeActive(index)" @mouseout="removeActive(index)"
                     :class="{ classred:classenable&&index==current}">
-                    <li @click="headlopen" class="show">{{item.goodsName}}</li>
+                    <li @click="headlopen" class="show"><img :src="item.goodsImg" alt=""></li>
+                    <li @click="headlopen" class="Gname" @mouseover="gName(item)">{{item.goodsName}}</li>
                     <li @click="headlopen" class="show">{{item.goodsSize}}</li>
                     <li @click="headlopen" class="show">{{item.measurement}}</li>
                     <li @click="headlopen" class="show">{{item.usageNum}}</li>
@@ -47,16 +52,16 @@
                     </div> -->
                     <li @click="headlopen">
                         <span
-                            :class="{normal:item.goodsStatus===1,booked:item.goodsStatus===2,borrowed:item.goodsStatus===3,none:item.goodsStatus===4}"
+                            :class="{normal:item.goodsStatus===1,booked:item.goodsStatus===2,borrowed:item.goodsStatus===3}"
                             style="display: inline-block;width: auto;height: auto;">{{item.goodsStatus1}}</span>
                     </li>
-                    <div style="width: 155px; margin:0; display: inline-block;">
+                    <li style="width: 155px; margin:0; display: inline-block;border: none;">
                         <button @click="handleClick1(item,index)" :disabled="disabled">-</button>
-                        <input  type="number" class="tag" v-model="item.gamount" value="1" autocomplete="off">
+                        <input type="number" class="tag" v-model="item.gamount" value="1" autocomplete="off">
                         <button @click="handleClick(item,index)" :disabled="disabled">+</button>
-                    </div>
-                    <a href="javascript:;" @click="addShop(item,index)"
-                        :style="shopcarshtyle(item)">加入取件车</a>
+                    </li>
+                    <li style="border: none;"><button style="width: auto;font-size: 18px;height: 40px;" @click="addShop(item,index)"
+                        :style="shopcarshtyle(item)" :disabled="isDisable">加入取件车</button></li>
                 </ul>
             </div>
         </div>
@@ -80,4 +85,5 @@
     <script src="./layui/layui.all.js"></script>
     <script src="./js/qulist.js"></script>
 </body>
+
 </html>

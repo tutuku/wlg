@@ -9,7 +9,27 @@
     background: #eef9ff;
     position: relative;
 }
-
+#tong .layui-form {
+    width: 900px;
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+.concent .layui-form {
+    position:absolute;
+    right: 100px;
+    top: 82px;
+    width: auto;
+    height: 62px;
+    font-size: 20px;
+    line-height: 62px;
+    margin-top: 20px;
+}
+select {
+    height: 42px;
+    /* background: #409EFF; */
+    /* color: #fff; */
+}
 .title {
     width: 100%;
     height: 80px;
@@ -126,27 +146,30 @@
 
 .list-mes .center div span {
     display: inline-block;
-    height: auto;
+    height: 80px;
     width: 16%;
     font-size: 20px;
     text-align: center;
     margin-right: 1px;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.list-mes .center div span input {
+.list-mes .center span input {
     display: inline-block;
     margin: 0 auto;
     font-size: 20px
 }
 
-.list-mes .center div span button {
+.list-mes .center span button {
     display: inline-block;
     background: rgb(30, 159, 255);
     border: none;
     padding: 10px;
     border-radius: 5px;
     font-size: 16px;
-    color: #fff;
+    color: rgb(12, 12, 12);
 }
 
 input::-webkit-outer-spin-button,

@@ -26,7 +26,7 @@ window.oncontextmenu = function(){
                     type:'post',
                     data:{},
                     success:function(res){
-                        console.log(res.data)
+                        // console.log(res.data)
                         for (var i=0;i<res.data.length;i++){
                             if (res.data[i].goodsName == "") {
                             res.data[i].goodsName = that.nun
@@ -53,11 +53,14 @@ window.oncontextmenu = function(){
                             that.list1=["名称","厂家","尺寸","型号", "数量"]
                     },
                     error:function(err){
-                        console.log(err)
+                        // console.log(err)
                     }
                 })
             },
             methods: {
+                gName(item){
+            layer.tips("<span style='font-size:20px;line-height:25px'>"+item.goodsName+"</span>", '.Gname',{time: 3000,area:['auto','auto']});
+        },
                 goShou(){
                     window.location.href ='./shouye.html'
                 },
@@ -76,7 +79,7 @@ window.oncontextmenu = function(){
                             }
                         },
                         error: function (data) {
-                            console.log(data)
+                            // console.log(data)
                         },
                     });
                 },
@@ -93,7 +96,7 @@ window.oncontextmenu = function(){
                     var that = this
                     sessionStorage.setItem('bid',item.id)
                     sessionStorage.setItem('ids',item.sids)
-                    console.log('00',item)
+                    // console.log('00',item)
                        this.showbox=true 
                     
                 },
@@ -116,7 +119,7 @@ window.oncontextmenu = function(){
                     } else {
                         var id=sessionStorage.getItem('bid')
                         var ids=sessionStorage.getItem('ids')
-                        console.log(id)
+                        // console.log(id)
                         var indexs = layer.load(1, {
                         shade: [0.8,'#000'] ,
                             success:function(layero){
@@ -131,7 +134,7 @@ window.oncontextmenu = function(){
                                 id: id
                             },
                             success: function (suc) {
-                                console.log(suc)
+                                // console.log(suc)
                                 if(suc.status==1){
                                     that.text = '柜门已开，请补充物品'
                                     that.speckText(that.text)
@@ -152,7 +155,7 @@ window.oncontextmenu = function(){
                     }
                 },
                 guansuo(ids,indexs,index) {
-                    console.log('guan ids', ids)
+                    // console.log('guan ids', ids)
                     var that = this
                     $.ajax({
                         type: 'post',
@@ -162,7 +165,7 @@ window.oncontextmenu = function(){
                         },
                         success: function (res) {
                             // var flax=0;
-                            console.log('guan', res)
+                            // console.log('guan', res)
                             var suostatus
                             if (res.status == 1) {
                                 // flax++

@@ -1,3 +1,4 @@
+// 禁止用户复制
 window.oncontextmenu = function () {
     return false;
 }
@@ -16,6 +17,7 @@ const shouye = new Vue({
         }
     },
     created() {
+        // 页面挂载请求当前用户的信息
         this.text = '欢迎使用物联柜操作系统！'
         this.speckText1(this.text)
         this.text = ''
@@ -25,7 +27,7 @@ const shouye = new Vue({
             url: baseurl + '/user/getLoginUser',
             cache: true, //推荐使用缓存
             success: function (suc) {
-                // console.log('6666666', suc.data)
+                // // console.log('6666666', suc.data)
                 that.imgsrc = suc.data.faceimg
                 if (suc.data.status === 1) {
                     suc.data.status = "未激活";
@@ -41,7 +43,7 @@ const shouye = new Vue({
                     that.admin.type = 2
                     suc.data.type = '临时用户'
                 }
-                console.log('000', that.admin.type)
+                // console.log('000', that.admin.type)
                 sessionStorage.setItem('persondata', JSON.stringify(suc.data));
                 // layui.form.val('example1',JSON.parse(sessionStorage.getItem('persondata')))
                 shouye.realname = suc.data.realname;
@@ -53,9 +55,11 @@ const shouye = new Vue({
         })
     },
     methods: {
+        // 消耗品补充按钮
         supplement(){
             window.location.href='./supplement.html'
         },
+        // 百度语音播报
         speckText1(str) {
             var url = "http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=" + encodeURI(str);        // baidu
             var n = new Audio(url);
@@ -66,7 +70,7 @@ const shouye = new Vue({
             let blob = "./yuyin/密码.wav"
             let formdata = new FormData();
             formdata.append("file", blob);
-            console.log(blob)
+            // console.log(blob)
             $.ajax({
                 url: baseurl + '/newGoods/findGoodsByVoice',
                 type: 'post',
@@ -77,19 +81,23 @@ const shouye = new Vue({
                 async: true,
                 data: formdata,
                 success: function (res) {
-                    console.log(res)
+                    // console.log(res)
                 }
             })
         },
+        // 物品列表按钮
         goodsList() {
             window.location.href = './menulist.html'
         },
+        // 柜门列表按钮
         doorlist() {
-            window.location.href = './doormenu.html'
+            window.location.href = './door.html'
         },
+        // 刷新按钮
         refresh() {
             window.location.reload()
         },
+        // 控住菜单是否显示
         handleCloseModal() {
             this.showbox = false;
             this.showreturn = false
@@ -98,6 +106,7 @@ const shouye = new Vue({
             this.showChang = false;
             this.showreturn = false
         },
+        // 未还信息按钮
         returnInformation() {
             this.text = '未还信息'
             this.speckText1(this.text)
@@ -111,9 +120,11 @@ const shouye = new Vue({
                 content: $('#returnmsg')
             });
         },
+        // 关闭按钮
         closereturn() {
             this.showreturn = false
         },
+        // 退出登录按钮
         handleSave() {
             $.ajax({
                 type: "post",
@@ -129,16 +140,19 @@ const shouye = new Vue({
                     }
                 },
                 error: function (data) {
-                    console.log(data)
+                    // console.log(data)
                 },
             });
         },
+        // 判断性别
         sexval() {
             var genderval = myform.gender.value
             sessionStorage.setItem('genderval', genderval)
         },
+        // 确认修改按钮
         headClose() {
             var realname = document.getElementById('realname').value;
+            // 判断用户是否填写信息
             if (!realname) {
                 layer.tips('请输入真实姓名!', '#realname', {
                     tips: [2, '#c00']
@@ -169,7 +183,7 @@ const shouye = new Vue({
                     phone: phone,
                 },
                 success: function (suc) {
-                    console.log('22', suc)
+                    // console.log('22', suc)
                     if (suc.success == true) {
                         that.showbox = false;
                         layer.msg(suc.data)
@@ -180,6 +194,7 @@ const shouye = new Vue({
             })
 
         },
+        // 个人信息按钮
         headOpen() {
             this.text = '个人信息'
             this.speckText1(this.text)
@@ -187,12 +202,14 @@ const shouye = new Vue({
             this.showbox = true
             this.showChang = false
         },
+        // 修改密码按钮
         changWord() {
             var text = '修改密码'
             this.speckText1(text)
             this.showChang = true
             this.showbox = false
         },
+        // 确定修改密码按钮
         closeChange() {
             var oldPassword = document.getElementById('oldPassword').value;
             if (!oldPassword) {
@@ -213,9 +230,11 @@ const shouye = new Vue({
     },
 })
 const oZhezhao = document.getElementById('zhezhao')
+// 取件按钮
 $('#take').on('click', () => {
     window.location.href = "./search.html";
 })
+// 还件按钮
 $('#also').mouseenter(function () {
     $(this).find($('.itemmeu')).show(400)
 }).mouseleave(function () {
@@ -240,6 +259,7 @@ function speckText(str) {
     n.src = url;
     n.play();
 }
+// 二维码还件
 var indexs ;  
 $('#code').click(function () {
      indexs = layui.layer.load(1, {
@@ -256,7 +276,7 @@ $('#code').click(function () {
         type: 'post',
         url: baseurl + '/newGoods/codeBackGoods',
         success: function (res) {
-            console.log(res)
+            // console.log(res)
             if (res.status == 1) {
                 setTimeout(function () { guansuo(res.data.sids, indexs) }, 3000)
             } else if(res.status==-1) {
@@ -271,7 +291,7 @@ $('#code').click(function () {
             }
         },
         error: function (err) {
-            console.log(err)
+            // console.log(err)
             layer.close(indexs);
             layer.msg(err.data, {
                 icon: 6,
@@ -281,8 +301,9 @@ $('#code').click(function () {
         }
     })
 })
+// 二维码换件请求函数
 function guansuo(ids, indexs, index) {
-    console.log('guan item', ids)
+    // console.log('guan item', ids)
     var that = this
     $.ajax({
         type: 'post',
@@ -291,7 +312,7 @@ function guansuo(ids, indexs, index) {
             sids: ids
         },
         success: function (res) {
-            console.log('guan', res)
+            // console.log('guan', res)
             var suostatus
             if (res.status == 1) {
                 layer.close(indexs)
@@ -321,6 +342,7 @@ function guansuo(ids, indexs, index) {
 
     })
 }
+// 还件按钮
 $('#picture').click(function () {
     window.location.href = './huanlist.html'
 })

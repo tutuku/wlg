@@ -9,8 +9,9 @@ const qujian = new Vue({
         }
     },
     created(){
+        // 页面挂载
         var dd=localStorage.getItem('did')
-        this.text = dd + '号柜门物品列表'
+        this.text = dd + '号箱内物品列表'
         this.speckText(this.text)
     },
     methods: {
@@ -23,6 +24,7 @@ const qujian = new Vue({
         goShou() {
             window.location.href = './shouye.html'
         },
+        // 退出登录
         handleSave() {
             $.ajax({
                 type: "post",
@@ -38,12 +40,13 @@ const qujian = new Vue({
                     }
                 },
                 error: function (data) {
-                    console.log(data)
+                    // console.log(data)
                 },
             });
         }
     },
 })
+// 回退按钮
 $('#back').on('click', () => {
     window.location.href = "./doormenu.html"
 })

@@ -18,7 +18,7 @@ window.oncontextmenu = function(){
                 this.text = gname + '物品'
                 this.speckText(this.text)
                 var that = this
-                console.log(newId)
+                // console.log(newId)
                 $.ajax({
                     url: baseurl+'/newGoods/newMenu',
                     type: 'post',
@@ -27,12 +27,12 @@ window.oncontextmenu = function(){
                         parentid: newId
                     },
                     success: function (success) {
-                        console.log(success.data)
+                        // console.log(success.data)
                         that.list = success.data
                         that.id = success.data.id
                     },
                     error: function (err) {
-                        console.log(err)
+                        // console.log(err)
                     }
                 })
             },
@@ -44,10 +44,10 @@ window.oncontextmenu = function(){
                     n.play();
                 },
                 block: function (index) {
-                    console.log(this)
+                    // console.log(this)
                 },
                 handleToggle(item) {
-                    console.log(item)
+                    // console.log(item)
                     localStorage.setItem('id', item.id)
                     localStorage.setItem('igname',item.goodsName)
                     window.location.href='./huanlist.html'
@@ -77,7 +77,7 @@ window.oncontextmenu = function(){
                             }
                         },
                         error: function (data) {
-                            console.log(data)
+                            // console.log(data)
                         },
                     });
                 },

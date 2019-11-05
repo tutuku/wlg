@@ -12,6 +12,7 @@
 </head>
 <body onselectstart="return false">
     <div class="concent" id="content" v-cloak>
+        <!-- 头部导航 -->
         <div class="title">
             <p style="padding-left: 44px;cursor:pointer;" @click="goShou">物联柜</p>
             <p style="cursor:pointer;" @click="goGet">取件</p>
@@ -20,9 +21,10 @@
             <img id="back" style="cursor:pointer;" src="./image/back.png" alt="">
             <div class="welcome">
                 
-                <img style="cursor:pointer;" @click="handleSave" src="./image/power.png" alt="">
+                <img style="cursor:pointer;" @click="handleSave" src="./image/exit.png" alt="">
             </div>
         </div>
+        <!-- 内容部分 -->
         <div id="center">
             <ul>
                 <li class="shebei" v-for="item,index in list" @click="sendId(item)" style="cursor:pointer;">

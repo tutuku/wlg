@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="./layui/css/layui.css">
     <link rel="stylesheet" href="./css/huanlist.css">
 </head>
+
 <body>
     <div class="concent" id="content" v-cloak>
+        <!-- 头部导航 -->
         <div class="title">
             <p style="padding-left: 44px; cursor:pointer;" @click="goShou">物联柜</p>
             <!-- <p style="cursor:pointer;" @click="goBack">还件</p> -->
@@ -19,9 +21,10 @@
             <img src="./image/购物车.png" style="margin-right: 60px;cursor:pointer;" @click="goShop" id="shop" alt="">
             <img id="back" @click="back" style="cursor:pointer;" src="./image/back.png" alt="">
             <div class="welcome">
-                <img style="cursor:pointer;" @click="handleSave" src="./image/power.png" alt="">
+                <img style="cursor:pointer;" @click="handleSave" src="./image/exit.png" alt="">
             </div>
         </div>
+        <!-- 还件列表 -->
         <div id="alert">
             <p>物品列表</p>
             <div id="blo">
@@ -29,14 +32,13 @@
                     <li v-for="item in list1" style="margin-right: 4px;">{{item}}</li>
                 </ul>
                 <ul v-for="(item,index) in list2" ref="detail">
-                    <li>{{item.gname}}</li>
-                    <li>{{item.gfactory}}</li>
-                    <li>{{item.gsize}}</li>
+                    <li class="Gname" @mouseover="gName(item)">{{item.gname}}</li>
                     <li>{{item.measurement}}</li>
+                    <li>{{item.gsize}}</li>
                     <li>{{item.gnum}}</li>
+                    <li @click="seeUser(item)"><img :src="item.img" alt=""></li>
                     <li>{{item.uname}}</li>
-                    <a href="javascript:;" @click="addShop(item,index)" v-if='item.isConsumables==1'>补充</a>
-                    <a href="javascript:;" @click="addShop(item,index)" v-else='item.isConsumables==2'>还件</a>
+                    <li style="width:70px;height: 50px;border: none;margin-left: 10px;margin-bottom: 10px;"><a href="javascript:;" @click="addShop(item,index)">&nbsp; 还 件 &nbsp;</a></li>
                 </ul>
             </div>
         </div>
@@ -49,4 +51,5 @@
     <script src="./js/base.js"></script>
     <script src="./js/huanlist.js"></script>
 </body>
+
 </html>

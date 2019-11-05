@@ -17,11 +17,12 @@ window.oncontextmenu = function(){
                 }
             },
             created() {
+                // 页面挂载请求还件列表
                 var newId=localStorage.getItem('id')
                 this.text = '还件列表'
                 this.speckText(this.text)
                 var that=this
-                console.log(newId)
+                // console.log(newId)
                 $.ajax({
                     url:baseurl+'/newGoods/findBorrowed',
                     type:'post',
@@ -29,18 +30,18 @@ window.oncontextmenu = function(){
                         parentid:newId
                     },
                     success:function(res){
-                        console.log(res.data)
+                        // console.log(res.data)
                         for (var i=0;i<res.data.length;i++){
                             if (res.data[i].gname == "") {
                             res.data[i].gname = that.nun
                         } else { 
                             res.data[i].gname == res.data[i].gname 
                             }
-                        if (res.data[i].gfactory == "") {
-                            res.data[i].gfactory = that.nun
-                        } else { 
-                            res.data[i].gfactory == res.data[i].gfactory 
-                            }
+                        // if (res.data[i].gfactory == "") {
+                        //     res.data[i].gfactory = that.nun
+                        // } else { 
+                        //     res.data[i].gfactory == res.data[i].gfactory 
+                        //     }
                         if (res.data[i].gsize == "") {
                             res.data[i].gsize = that.nun
                         } else {
@@ -66,18 +67,37 @@ window.oncontextmenu = function(){
                         // if(res.data[0].isConsumables==2){
                         //     that.list1=["名称","厂家","型号","尺寸", "数量"]
                         // }else{
-                            that.list1=["名称","厂家","尺寸", "型号", "数量","借件人"]
+                            that.list1=["名称","型号", "尺寸", "数量", "图片","借件人"]
                         // }
                     },
                     error:function(err){
-                        console.log(err)
+                        // console.log(err)
                     }
                 })
             },
             methods: {
+                // 物品名称过长的处理
+                gName(item){
+                    layer.tips("<span style='font-size:20px;'>"+item.gname+"</span>", '.Gname',{time: 3000,area:['auto','auto']});
+                },
+                // 查看用户
+                seeUser(item){
+                    // console.log(item)
+                    layer.open({
+                        type: 1,
+                        title: false,
+                        closeBtn: 0,
+                        area: ['420px', '420px'],
+                        skin: 'layui-layer-nobg', //没有背景色
+                        content:"<img src="+item.img+" style='width:420px;height:420px;'>",
+                        shadeClose: true,
+                      });
+                },
+                // 回首页
                 goShou(){
                     window.location.href ='./shouye.html'
                 },
+                // 退出登录
                 handleSave() {
                     $.ajax({
                         type: "post",
@@ -93,10 +113,11 @@ window.oncontextmenu = function(){
                             }
                         },
                         error: function (data) {
-                            console.log(data)
+                            // console.log(data)
                         },
                     });
                 },
+                // 回退按钮
                 goBack:function(){
                     window.location.href='./huansearch.html'
                 },
@@ -110,7 +131,7 @@ window.oncontextmenu = function(){
                     var that = this
                     sessionStorage.setItem('bid',item.gid)
                     sessionStorage.setItem('ids',item.sids)
-                    console.log('00',item)
+                    // console.log('00',item)
                         that.besure1()
                 },
                 goShop(){
@@ -126,8 +147,9 @@ window.oncontextmenu = function(){
                     n.src = url;
                     n.play();
                 },
+                // 检查当前开锁的锁状态
                 guansuo1(ids,indexs,index) {
-                    console.log('guan ids', ids)
+                    // console.log('guan ids', ids)
                     var that = this
                     $.ajax({
                         type: 'post',
@@ -136,7 +158,7 @@ window.oncontextmenu = function(){
                             sids: ids
                         },
                         success: function (res) {
-                            console.log('guan', res)
+                            // console.log('guan', res)
                             var suostatus
                             if (res.status == 1) {
                                 clearTimeout(suostatus)
@@ -164,11 +186,12 @@ window.oncontextmenu = function(){
 
                     })
                 },
+                // 开锁指令
                 besure1() {
                     var id=sessionStorage.getItem('bid')
                     var ids=sessionStorage.getItem('ids')
                         var that = this
-                        console.log(id,ids)
+                        // console.log(id,ids)
                         var indexs = layer.load(1, {
                         shade: [0.8,'#000'] ,
                             success:function(layero){
@@ -183,7 +206,7 @@ window.oncontextmenu = function(){
                                 id: id
                             },
                             success: function (suc) {
-                                console.log(suc)
+                                // console.log(suc)
                                 if(suc.status==1){
                                     that.text = '柜门已开，请还件'
                                     that.speckText(that.text)

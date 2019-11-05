@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -9,8 +10,10 @@
     <link rel="stylesheet" href="./layui/css/layui.css">
     <link rel="stylesheet" href="./css/shop.css">
 </head>
+
 <body onselectstart="return false" oncopy="return false" onselectstart="return false">
     <div class="concent" id="content" v-cloak>
+        <!-- 头部导航 -->
         <div class="title">
             <p style="padding-left: 44px; cursor:pointer;" @click="goShou">物联柜</p>
             <p>取件车</p>
@@ -19,9 +22,10 @@
             <div class="welcome">
                 <img src="./image/new.png" alt="" @click="refresh" style="right: 130px;cursor:pointer;">
                 <!-- <img id="goShop" src="./image/购物车.png" style="right: 100px; cursor:pointer;" @click="goShop" alt=""> -->
-                <img style="cursor:pointer;" @click="handleSave" src="./image/power.png" alt="">
+                <img style="cursor:pointer;" @click="handleSave" src="./image/exit.png" alt="">
             </div>
         </div>
+        <!-- 全选与全不选 -->
         <div class="all-del">
             <button id="selectAll" class="select" v-if="list2.length>itemchecked.length"
                 style="left: 50px;background: #409efe;color: #fff;border: none" @click="selectAll">
@@ -34,15 +38,24 @@
             <input type="button" class="delete" @click="handleDeleteitems()" value="删除"
                 style="left: 150px;background: #409efe;color: #fff;border: none;padding: 0 18px;" />
         </div>
+        <!-- 取件车发送 -->
+        <span style="display: inline-block;position: absolute;right: 400px; top: 105px; font-size: 20px;font-weight: bold;">取件车发送:</span>
+        <div class="layui-form">
+            <select name="xm" id="xm" lay-verify="required" lay-filter="xmFilter">
+                <option value=""> -- 请选择发送人 -- </option>
+            </select>
+        </div>
+        <!-- 需要发送的人 -->
         <div class="list-mes">
             <span v-for="item in list1">{{item}}</span>
+            <!-- 取件列表 -->
             <div class="center">
                 <div v-for="item,index in list2">
                     <span>
                         <input type="checkbox" v-model="item.checked">
                         <img :src="item.limg" alt="">
                     </span>
-                    <span>{{item.gname}}</span>
+                    <span style="overflow: hidden;" class="Gname" @mouseover="gName(item)">{{item.gname}}</span>
                     <span>{{item.measurement}}</span>
                     <span>{{item.gsize}}</span>
                     <span v-if="item.isConsumables==2">
@@ -50,7 +63,7 @@
                             :class="{normal:item.goodsStatus===1,booked:item.goodsStatus===2,borrowed:item.goodsStatus===3}"
                             style="display: inline-block;width: auto;height: auto;">1</span>
                     </span>
-                    <div v-else style="display: inline-block;width: 16%;text-align: center;">
+                    <span v-else style="display: inline-block;width: 16%;text-align: center;">
                         <button style="font-size: 36px;
                               height: 46px;
                               width: 40px;border: none;background-color:#eef9ff " @click="numcomit(item,index)"
@@ -63,7 +76,7 @@
                             height: 46px;
                             width: 40px; border: none;background-color:#eef9ff" @click="numplus(item,index)"
                             :disabled="disabled">+</button>
-                    </div>
+                    </span>
                     <span>
                         <button class="delete" @click="handleDelete(item,index)" style="cursor: pointer;">删除</button>
                         <button class="delete" @click="handleSaveNums(item)" v-if="item.isConsumables!==2"
@@ -71,6 +84,7 @@
                     </span>
                 </div>
             </div>
+            <!-- 底部工具 -->
             <div id="botm">
                 <span style="color: #000;float: left;text-align: left;
                 text-indent: 35px;">共计 <em style="    color: rgb(0, 15, 58);
@@ -92,6 +106,7 @@
         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">取消</a>
     </script>
     <script src="./js/shop.js"></script>
+    <script src="./js/shop1.js"></script>
 </body>
 
 </html>
