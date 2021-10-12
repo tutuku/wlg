@@ -9,6 +9,6 @@
   "author": "zyx",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^6.0.8"
+    "electron": "^11.5.0"
   }
 }
